@@ -1,48 +1,57 @@
-// ===== objects in js =====
 
+// ==== prototype in javascript ========
 /*
-let car={
-    name:'ODI',
-    color:'silver',
-    speed:500,
-    recommend:true,
-    price:500000,
-    title:'toyota',
-    location:['pakistan','india','USA','iran']
+function person(name,age,address,language){
+    this.name=name,
+    this.age=age,
+    this.address=address,
+    this.language=language
 }
 
-console.log(car ,typeof car)
+let father=new person('jon',30,'pakistan','english');
 
-console.log(car.name)
-console.log(car.speed)
-console.log(car.recommend)
-console.log(car.title)
-console.log(car.location)
-console.log(car.location[0])
-console.log(car.location[1])
-console.log(car.location[2])
+person.prototype.city='pak';
+person.prototype.id=3930230
+// Object.prototype.my='list'
+
+console.log(father)
+console.log(person.prototype.id)
+console.log(person.prototype.city)
 */
 
-//  --------oop object constructor ---------
+function employ(name,age,id){
+    this.name=name;
+    this.age=age;
+    this.id=id
 
-
-let car=function(name,color,title,price){
-    this.name=name,
-    this.color=color,
-    this.title=title,
-    this.price=price
 }
 
-// --car1---
-let car1=new car('JLI','red','Honda',300000)
+// functions
+employ.prototype.slogan=function (){
+    return `this is best company regards ${this.name}`
+}
 
-// --car2---
-let car2=new car('OD','silver','toyota',5000000)
 
-console.log(car1)
 
-console.log(car2)
-console.log(car2.name)
-console.log(car2.color)
-console.log(car2.title)
-console.log(car2.price)
+
+let emp1=new employ('elon musk',30,39393);
+console.log(emp1)
+console.log(emp1.slogan())
+
+
+//  second constructor object
+
+function programmer(exp,lan){
+    this.exp=exp,
+    this.lan=lan
+}
+
+let pro1=new programmer(3,'html')
+console.log(pro1)
+
+programmer.prototype=Object.create(employ.prototype)
+
+programmer.prototype.constructor =programmer 
+
+let pro2=new programmer(2,'css')
+console.log(pro2)
